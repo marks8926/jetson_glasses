@@ -1,0 +1,48 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <cv.h>
+#include <time.h>
+#include <highgui.h>
+ #include "opencv2/objdetect/objdetect.hpp"
+#include "opencv2/cudaobjdetect.hpp"
+ #include "opencv2/highgui/highgui.hpp"
+ #include "opencv2/imgproc/imgproc.hpp"
+
+ #include <iostream>
+
+
+using namespace std;
+using namespace cv;
+
+
+int main(int argc, char **argv)
+{
+
+  VideoCapture cap(0);
+  if(!cap.isOpened())
+	return -1;
+
+  double t;
+   Mat frame, gray, edges;
+   namedWindow("cam",1);
+   namedWindow("edges",1);
+   	for(;;)
+	{
+		Mat frame;
+		cap >> frame;
+		t = (double)cvGetTickCount();
+		cvtColor(frame, gray,CV_BGR2GRAY);
+		t = (double)cvGetTickCount() - t;
+  		printf("detection time = %g ms\n", t/((double)cvGetTickFrequency()*1000.));
+		imshow("cam", frame);
+		imshow("grey",gray);
+		if(waitKey(30)>=0)
+			break;
+	}
+
+
+   return 0;
+
+}
+
