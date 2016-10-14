@@ -1,1 +1,0 @@
-/home/ubuntu/cv/camera/CMakeFiles/camera.dir

@@ -7,9 +7,16 @@ endif(COMMAND cmake_policy)
 
 FIND_PACKAGE( OpenCV REQUIRED )
 
+include_directories(include)
+file(GLOB SOURCES "src/*.cpp")
+
 # Declare the target (an executable)
-ADD_EXECUTABLE(camera cam.cpp)
+ADD_EXECUTABLE(camera ${SOURCES})
+# Declare the target (an executable)
+
 
 TARGET_LINK_LIBRARIES(camera ${OpenCV_LIBS})
 
 #MESSAGE(STATUS "OpenCV_LIBS: ${OpenCV_LIBS}")
+
+
